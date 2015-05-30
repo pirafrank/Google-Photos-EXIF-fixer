@@ -17,12 +17,9 @@ timestamp_pattern = re.compile(r'''
     (?P<year>\d{4} ) \D?
     (?P<month>\d{2}) \D?
     (?P<day>\d{2}  ) \D?
-    (?:
-        # Optional components.
-        (?P<hour>\d{2}  ) \D?
-        (?P<minute>\d{2}) \D?
-        (?P<second>\d{2})?
-    )?
+    (?P<hour>\d{2}  ) \D?
+    (?P<minute>\d{2}) \D?
+    (?P<second>\d{2})?
 ''', re.VERBOSE)
 
 # Functions ############################################################
