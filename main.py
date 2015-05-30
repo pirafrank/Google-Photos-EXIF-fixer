@@ -5,6 +5,26 @@ import os
 import re
 import subprocess
 
+try:
+  import docopt
+except:
+  print "Error: docopt needed!"
+  sys.exit()
+
+# Regular expression that matches timestamps encoded in filenames.
+timestamp_pattern = re.compile(r'''
+    # Required components.
+    (?P<year>\d{4} ) \D?
+    (?P<month>\d{2}) \D?
+    (?P<day>\d{2}  ) \D?
+    (?:
+        # Optional components.
+        (?P<hour>\d{2}  ) \D?
+        (?P<minute>\d{2}) \D?
+        (?P<second>\d{2})?
+    )?
+''', re.VERBOSE)
+
 # Functions ############################################################
 
 def fixMetadata(folder,pattern):  
