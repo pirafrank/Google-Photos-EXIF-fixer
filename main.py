@@ -24,8 +24,16 @@ timestamp_pattern = re.compile(r'''
 
 # Functions ############################################################
 
+def pathChecker(path):
+  # controllo path / nome file
+  path = path.replace("\\","")
+  if path[len(path)-1]==' ':
+      path = path[:-1]
+  return path
+
 def fixMetadata(folder,pattern):  
   #folder = sys.argv[1]
+  folder = pathChecker(folder)
   print "Working in dir:",folder
   print "listing dir content"
 
