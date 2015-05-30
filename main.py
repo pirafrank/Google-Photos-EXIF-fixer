@@ -31,8 +31,7 @@ def fixMetadata(folder,pattern):
 
   try:
     # add \ removal for unix systems
-    file_list = os.listdir(folder)
-    for filename in file_list:
+    for filename in os.listdir(folder):
       print filename
     # test stuff
     year="2015"
