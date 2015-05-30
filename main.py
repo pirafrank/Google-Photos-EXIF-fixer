@@ -7,15 +7,14 @@ import subprocess
 
 # Functions ############################################################
 
-def core(folder,pattern):  
+def fixMetadata(folder,pattern):  
   #folder = sys.argv[1]
   print "Working in dir:",folder
   print "listing dir content"
 
   try:
-    #pattern = sys.argv[2]
+    # add \ removal for unix systems
     file_list = os.listdir(folder)
-    #print file_list
     for filename in file_list:
       print filename
     # test stuff
@@ -34,20 +33,21 @@ def core(folder,pattern):
   except:
     print "Error: Cannot edit EXIF metadata!"
 
-#if sys.argv[1] == "" or sys.argv[2] == "":
+
 def main():
   try:
     folder=sys.argv[1]
     pattern=sys.argv[2]
-    core(folder,pattern)
+    fixMetadata(folder,pattern)
   except:
     print "Error: Not enough arguments!"
     print "Usage: gphotofix \"<folder path>\" <pattern>"
     print "Example: gphotofix \"/Users/francesco/Downloads/some pictures\" YYYY_MM_DD HH-MM-SS,aa"
 
-# Program ############################################################
 
-main()
+if __name__ == "__main__":
+  main()
+
 
 #print datetime,"(after)"
 
