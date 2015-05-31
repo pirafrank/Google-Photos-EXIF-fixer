@@ -24,6 +24,23 @@ timestamp_pattern = re.compile(r'''
 
 # Functions ############################################################
 
+def buildRegex(pattern):
+  print pattern,"(before)"
+  pattern = pattern.replace("x","") # Clean unneeded characters
+  pattern = pattern.replace("YYYY","(?P<year>\d{4})")
+  pattern = pattern.replace("MM","(?P<month>\d{2})")
+  pattern = pattern.replace("DD","(?P<day>\d{2})")
+  pattern = pattern.replace("HH","(?P<hours>\d{2})")
+  pattern = pattern.replace("MM","(?P<minutes>\d{2})")
+  pattern = pattern.replace("SS","(?P<seconds>\d{2})")
+  pattern = pattern.replace(".","\W+")
+  pattern = pattern.replace("_","\W+")
+  pattern = pattern.replace("-","\W+")
+  pattern = pattern.replace(" ","\W+")
+  pattern = pattern.replace("/","\W+")
+  print pattern,"(after)"
+  return pattern
+
 def pathChecker(path):
   # controllo path / nome file
   path = path.replace("\\","")
@@ -32,15 +49,23 @@ def pathChecker(path):
   return path
 
 def fixMetadata(folder,pattern):  
-  #folder = sys.argv[1]
   folder = pathChecker(folder)
+  # pattern = patternChecker(pattern) # to implement, for people not to use to times same group (e.g HH)
+  # debug stuff
   print "Working in dir:",folder
+  print "Pattern is:",pattern
   print "listing dir content"
 
   try:
     # add \ removal for unix systems
     for filename in os.listdir(folder):
-      print filename
+      filename = filename.replace(".jpg","")
+      print filename,"(voi siete qui)"
+      re = buildRegex(pattern)
+      match = re.match(filename)
+      if match:
+        print(m.group("year"))
+        
     # test stuff
     year="2015"
     month="05"
@@ -71,6 +96,8 @@ def main():
 
 if __name__ == "__main__":
   main()
+  #pattern = "YYYY_MM_DD"
+  #buildRegex(pattern)
 
 
 #print datetime,"(after)"
