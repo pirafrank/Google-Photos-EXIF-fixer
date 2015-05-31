@@ -56,7 +56,7 @@ def buildRegex(pattern):
 # Checking for exiftool to be installed
 def etInstalled():
   try:
-    subprocess.call(["which","exiftool"],stdout=subprocess.PIPE,shell=False)
+    subprocess.call(["which","exiftool"],stdout=subprocess.PIPE,shell=False) # stdout pipe hides useless output
     return True
   except:
     return False
