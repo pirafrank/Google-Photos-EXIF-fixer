@@ -65,9 +65,13 @@ def pathChecker(path):
       path = path[:-1]
   return path
 
+def patternChecker(pattern):
+  # need to be implemented
+  return pattern
+
 def fixMetadata(folder,pattern):  
   folder = pathChecker(folder)
-  # pattern = patternChecker(pattern) # to implement, for people not to use to times same group (e.g HH)
+  pattern = patternChecker(pattern) # to implement, for people not to use to times same group (e.g HH)
 
   print "Working in dir\t:",folder
   print "Pattern is\t:",pattern
