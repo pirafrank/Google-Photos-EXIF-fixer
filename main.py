@@ -93,7 +93,7 @@ def main():
     print "Example: gphotofix /Users/francesco/Downloads/some\ pictures YYYY_MM_DD hh-mm-ss,xx"
   else:
     folder=sys.argv[1]
-    if isPathExistent(folder):
+    if not isPathExistent(folder):
       print "Error: Path doesn't exist!"
       sys.exit()
     else:
