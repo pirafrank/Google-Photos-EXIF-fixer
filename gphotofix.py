@@ -123,18 +123,29 @@ def fixMetadata(folder,pattern):
 
 def main():
   if len(sys.argv) < 3:
-    print "Error: Not enough arguments!"
-    print "Usage: gphotofix <folder path> <pattern>"
-    print "Example: gphotofix /Users/francesco/Downloads/some\ pictures YYYY_MM_DD hh-mm-ss,xx"
+    print """
+Error: Not enough arguments!
+
+Usage: gphotofix <folder path> <pattern>
+
+<pattern> of the date contained in the filename. It doesn't have to match the whole filename!
+At the moment, all date details are needed (from second to year).
+Example: gphotofix /Users/francesco/Downloads/summer\ pictures \"YYYY_MM_DD hh.mm.ss\""
+
+    """
   else:
     folder=sys.argv[1]
     if not pathExists(folder):
       print "Error: Path doesn't exist!"
       sys.exit()
     if not etInstalled():
-      print "Error: exiftool is not installed and is needed."
-      print "You can download it from http://www.sno.phy.queensu.ca/~phil/exiftool/."
-      print "Please try again after exiftool installation."
+      print """
+
+Error: exiftool is not installed and is needed.
+You can download it from http://www.sno.phy.queensu.ca/~phil/exiftool/.
+Please try again after exiftool installation.
+
+"""
       sys.exit()
     try:
       pattern=sys.argv[2]
