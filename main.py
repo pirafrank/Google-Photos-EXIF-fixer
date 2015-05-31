@@ -52,11 +52,13 @@ def buildRegex(pattern):
   #print pattern,"(after)"
   return pattern
 
+
 def isPathExistent(folder):
   if not os.path.isdir(folder):
     return False
   else:
     return True
+
 
 def pathChecker(path):
   # Check for '\' character in folder path 
@@ -65,9 +67,11 @@ def pathChecker(path):
       path = path[:-1]
   return path
 
+
 def patternChecker(pattern):
   # needs to be implemented
   return pattern
+
 
 def fixMetadata(folder,pattern):  
   folder = pathChecker(folder)
