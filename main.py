@@ -69,8 +69,8 @@ def fixMetadata(folder,pattern):
   folder = pathChecker(folder)
   # pattern = patternChecker(pattern) # to implement, for people not to use to times same group (e.g HH)
 
-  print "Working in dir:",folder
-  print "Pattern is:",pattern
+  print "Working in dir\t:",folder
+  print "Pattern is\t:",pattern
 
   try:
     for filename in os.listdir(folder):
