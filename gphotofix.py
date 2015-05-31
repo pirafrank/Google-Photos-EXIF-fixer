@@ -53,6 +53,15 @@ def buildRegex(pattern):
   return pattern
 
 
+# Checking for exiftool to be installed
+def etInstalled():
+  try:
+    subprocess.call(["which","exiftool"],stdout=subprocess.PIPE,shell=False)
+    return True
+  except:
+    return False
+
+
 # Check if given folder exists
 def pathExists(folder):
   if not os.path.isdir(folder):
@@ -122,12 +131,16 @@ def main():
     if not pathExists(folder):
       print "Error: Path doesn't exist!"
       sys.exit()
-    else:
-      try:
-        pattern=sys.argv[2]
-        fixMetadata(folder,pattern)
-      except:
-        print "Error! Something wrong happened, sorry."
+    if not etInstalled():
+      print "Error: exiftool is not installed and is needed."
+      print "You can download it from http://www.sno.phy.queensu.ca/~phil/exiftool/."
+      print "Please try again after exiftool installation."
+      sys.exit()
+    try:
+      pattern=sys.argv[2]
+      fixMetadata(folder,pattern)
+    except:
+      print "Error! Something wrong happened, sorry."
 
 
 if __name__ == "__main__":
