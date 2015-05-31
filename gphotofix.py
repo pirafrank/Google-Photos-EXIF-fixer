@@ -53,7 +53,8 @@ def buildRegex(pattern):
   return pattern
 
 
-def isPathExistent(folder):
+# Check if given folder exists
+def pathExists(folder):
   if not os.path.isdir(folder):
     return False
   else:
@@ -118,7 +119,7 @@ def main():
     print "Example: gphotofix /Users/francesco/Downloads/some\ pictures YYYY_MM_DD hh-mm-ss,xx"
   else:
     folder=sys.argv[1]
-    if not isPathExistent(folder):
+    if not pathExists(folder):
       print "Error: Path doesn't exist!"
       sys.exit()
     else:
