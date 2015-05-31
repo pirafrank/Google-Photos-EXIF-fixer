@@ -25,20 +25,20 @@ timestamp_pattern = re.compile(r'''
 # Functions ############################################################
 
 def buildRegex(pattern):
-  print pattern,"(before)"
+  #print pattern,"(before)"
   pattern = pattern.replace("x","") # Clean unneeded characters
   pattern = pattern.replace("YYYY","(?P<year>\d{4})")
   pattern = pattern.replace("MM","(?P<month>\d{2})")
   pattern = pattern.replace("DD","(?P<day>\d{2})")
-  pattern = pattern.replace("HH","(?P<hours>\d{2})")
-  pattern = pattern.replace("MM","(?P<minutes>\d{2})")
-  pattern = pattern.replace("SS","(?P<seconds>\d{2})")
-  pattern = pattern.replace(".","\W+")
-  pattern = pattern.replace("_","\W+")
-  pattern = pattern.replace("-","\W+")
-  pattern = pattern.replace(" ","\W+")
-  pattern = pattern.replace("/","\W+")
-  print pattern,"(after)"
+  pattern = pattern.replace("hh","(?P<hours>\d{2})")
+  pattern = pattern.replace("mm","(?P<minutes>\d{2})")
+  pattern = pattern.replace("ss","(?P<seconds>\d{2})")
+  pattern = pattern.replace(".","\D?")
+  pattern = pattern.replace("_","\D?")
+  pattern = pattern.replace("-","\D?")
+  pattern = pattern.replace(" ","\D?")
+  pattern = pattern.replace("/","\D?")
+  #print pattern,"(after)"
   return pattern
 
 def pathChecker(path):
@@ -57,15 +57,16 @@ def fixMetadata(folder,pattern):
   print "listing dir content"
 
   try:
-    # add \ removal for unix systems
     for filename in os.listdir(folder):
       filename = filename.replace(".jpg","")
-      print filename,"(voi siete qui)"
-      re = buildRegex(pattern)
-      match = re.match(filename)
-      if match:
+      #print filename,"(here you are)"
+      pattern = buildRegex(pattern)
+      prog = re.compile(pattern)
+      m = prog.search(filename)
+      #print m
+      if m:
         print(m.group("year"))
-        
+
     # test stuff
     year="2015"
     month="05"
@@ -90,8 +91,8 @@ def main():
     fixMetadata(folder,pattern)
   except:
     print "Error: Not enough arguments!"
-    print "Usage: gphotofix \"<folder path>\" <pattern>"
-    print "Example: gphotofix \"/Users/francesco/Downloads/some pictures\" YYYY_MM_DD HH-MM-SS,aa"
+    print "Usage: gphotofix <folder path> <pattern>"
+    print "Example: gphotofix /Users/francesco/Downloads/some\ pictures YYYY_MM_DD hh-mm-ss,xx"
 
 
 if __name__ == "__main__":
