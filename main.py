@@ -2,6 +2,7 @@
 
 #############################################################################
 # gphotofix
+# A simple way to fix EXIF data before uploading pictures to Google Photos
 #
 # Copyright (C) 2015 Francesco Pira <dev@fpira.com>
 #
