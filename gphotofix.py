@@ -140,7 +140,7 @@ def main():
       pattern=sys.argv[2]
       fixMetadata(folder,pattern)
     except:
-      print "Error! Something wrong happened, sorry."
+      print "Error! Something went wrong, sorry."
 
 
 if __name__ == "__main__":
