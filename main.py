@@ -73,14 +73,22 @@ def fixMetadata(folder,pattern):
   folder = pathChecker(folder)
   pattern = patternChecker(pattern) # to implement, for people not to use to times same group (e.g HH)
 
+  print ""
   print "Working in dir\t:",folder
   print "Pattern is\t:",pattern
+  print ""
 
+  try:
+    pattern = buildRegex(pattern)
+    prog = re.compile(pattern)
+  except:
+    print "Error: Cannot build regular expression!"
+    sys.exit()
+
+  print "*** Running exiftool ***"
   try:
     for filename in os.listdir(folder):
       #filename = filename.replace(".jpg","")
-      pattern = buildRegex(pattern)
-      prog = re.compile(pattern)
       m = prog.search(filename)
       if m:
         year=(m.group("year"))
