@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
 #############################################################################
-# gphotofix
+# gphotofix <https://github.com/pirafrank/Google-Photos-EXIF-fixer/>
 # A simple way to fix EXIF data before uploading pictures to Google Photos
 #
 # Copyright (C) 2015 Francesco Pira <dev@fpira.com>
+#
+# This file is part of Google-Photos-EXIF-fixer
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,8 +20,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-# developer's website: fpira.com
 #
 #############################################################################
 
