@@ -98,12 +98,12 @@ def fixMetadata(folder,pattern):
         minute=(m.group("minute"))
         second=(m.group("second"))
         # Editing EXIF metadata using exiftool
-        datetime = "\"-DateTimeOriginal="
-        datetime=datetime+year+":"+month+":"+day+" "+hour+":"+minute+":"+second+"\""
-        #print datetime
-        path = folder+"/"+filename
-        subprocess.call(["exiftool","-overwrite_original",datetime,path])
-        #print "exiftool","-overwrite_original",datetime,path
+        arg2 = "-overwrite_original \"-DateTimeOriginal=" # arg2 is the second argument of exiftool
+        arg2=arg2+year+":"+month+":"+day+" "+hour+":"+minute+":"+second+"\""
+        path = "\""+folder+"/"+filename+"\""
+        #print arg2
+        #print path
+        subprocess.call(["exiftool", arg2, path])
 
   except:
     print "Error: Cannot edit EXIF metadata!"
