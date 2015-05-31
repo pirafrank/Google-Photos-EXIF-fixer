@@ -67,30 +67,27 @@ def fixMetadata(folder,pattern):
       prog = re.compile(pattern)
       m = prog.search(filename)
       if m:
+        '''
         print(m.group("year"))
         print(m.group("month"))
         print(m.group("day"))
         print(m.group("hour"))
         print(m.group("minute"))
         print(m.group("second"))
-
         '''
-        # test stuff
+
         year=(m.group("year"))
         month=(m.group("month"))
         day=(m.group("day"))
-        hour=(m.group("hours"))
+        hour=(m.group("hour"))
         minute=(m.group("minute"))
         second=(m.group("second"))
-        '''
 
-        '''
         # Editing EXIF metadata using exiftool
         datetime = "\"-DateTimeOriginal="
         datetime=datetime+year+":"+month+":"+day+" "+hour+":"+minute+":"+second+"\""
         print datetime
         #subprocess.call(["./exiftool","-overwrite_original",datetime,filename])
-        '''
 
   except:
     print "Error: Cannot edit EXIF metadata!"
