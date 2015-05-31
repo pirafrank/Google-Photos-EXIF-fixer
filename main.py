@@ -29,9 +29,9 @@ def buildRegex(pattern):
   pattern = pattern.replace("YYYY","(?P<year>\d{4})")
   pattern = pattern.replace("MM","(?P<month>\d{2})")
   pattern = pattern.replace("DD","(?P<day>\d{2})")
-  pattern = pattern.replace("hh","(?P<hours>\d{2})")
-  pattern = pattern.replace("mm","(?P<minutes>\d{2})")
-  pattern = pattern.replace("ss","(?P<seconds>\d{2})")
+  pattern = pattern.replace("hh","(?P<hour>\d{2})")
+  pattern = pattern.replace("mm","(?P<minute>\d{2})")
+  pattern = pattern.replace("ss","(?P<second>\d{2})")
   pattern = pattern.replace(".","\D?")
   pattern = pattern.replace("_","\D?")
   pattern = pattern.replace("-","\D?")
@@ -68,19 +68,29 @@ def fixMetadata(folder,pattern):
       m = prog.search(filename)
       if m:
         print(m.group("year"))
+        print(m.group("month"))
+        print(m.group("day"))
+        print(m.group("hours"))
+        print(m.group("minute"))
+        print(m.group("second"))
 
-    # test stuff
-    year="2015"
-    month="05"
-    day="10"
-    hours="11"
-    minutes="00"
-    seconds="00"
+        '''
+        # test stuff
+        year=(m.group("year"))
+        month=(m.group("month"))
+        day=(m.group("day"))
+        hour=(m.group("hours"))
+        minute=(m.group("minute"))
+        second=(m.group("second"))
+        '''
 
-    # Editing EXIF metadata using exiftool
-    datetime = "\"-DateTimeOriginal="
-    datetime=datetime+year+":"+month+":"+day+" "+hours+":"+minutes+":"+seconds+"\""
-    #subprocess.call(["./exiftool","-overwrite_original",datetime,filename])
+        '''
+        # Editing EXIF metadata using exiftool
+        datetime = "\"-DateTimeOriginal="
+        datetime=datetime+year+":"+month+":"+day+" "+hour+":"+minute+":"+second+"\""
+        print datetime
+        #subprocess.call(["./exiftool","-overwrite_original",datetime,filename])
+        '''
 
   except:
     print "Error: Cannot edit EXIF metadata!"
