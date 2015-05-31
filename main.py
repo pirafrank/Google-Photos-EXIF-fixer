@@ -70,7 +70,7 @@ def fixMetadata(folder,pattern):
         print(m.group("year"))
         print(m.group("month"))
         print(m.group("day"))
-        print(m.group("hours"))
+        print(m.group("hour"))
         print(m.group("minute"))
         print(m.group("second"))
 
