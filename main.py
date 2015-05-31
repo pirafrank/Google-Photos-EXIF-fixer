@@ -62,32 +62,24 @@ def fixMetadata(folder,pattern):
 
   try:
     for filename in os.listdir(folder):
-      filename = filename.replace(".jpg","")
+      #filename = filename.replace(".jpg","")
       pattern = buildRegex(pattern)
       prog = re.compile(pattern)
       m = prog.search(filename)
       if m:
-        '''
-        print(m.group("year"))
-        print(m.group("month"))
-        print(m.group("day"))
-        print(m.group("hour"))
-        print(m.group("minute"))
-        print(m.group("second"))
-        '''
-
         year=(m.group("year"))
         month=(m.group("month"))
         day=(m.group("day"))
         hour=(m.group("hour"))
         minute=(m.group("minute"))
         second=(m.group("second"))
-
         # Editing EXIF metadata using exiftool
         datetime = "\"-DateTimeOriginal="
         datetime=datetime+year+":"+month+":"+day+" "+hour+":"+minute+":"+second+"\""
-        print datetime
-        #subprocess.call(["./exiftool","-overwrite_original",datetime,filename])
+        #print datetime
+        path = folder+"/"+filename
+        subprocess.call(["exiftool","-overwrite_original",datetime,path])
+        #print "exiftool","-overwrite_original",datetime,path
 
   except:
     print "Error: Cannot edit EXIF metadata!"
@@ -113,12 +105,3 @@ def main():
 
 if __name__ == "__main__":
   main()
-  #pattern = "YYYY_MM_DD"
-  #buildRegex(pattern)
-
-
-#print datetime,"(after)"
-
-# exiftool command:
-# ExifTool.pl -overwrite_original "-DateTimeOriginal=1981:07:01 00:00:00" .\1981-07-01
-
