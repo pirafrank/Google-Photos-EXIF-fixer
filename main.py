@@ -66,7 +66,7 @@ def pathChecker(path):
   return path
 
 def patternChecker(pattern):
-  # need to be implemented
+  # needs to be implemented
   return pattern
 
 def fixMetadata(folder,pattern):  
