@@ -26,7 +26,6 @@ timestamp_pattern = re.compile(r'''
 
 def buildRegex(pattern):
   #print pattern,"(before)"
-  pattern = pattern.replace("x","") # Clean unneeded characters
   pattern = pattern.replace("YYYY","(?P<year>\d{4})")
   pattern = pattern.replace("MM","(?P<month>\d{2})")
   pattern = pattern.replace("DD","(?P<day>\d{2})")
@@ -41,8 +40,14 @@ def buildRegex(pattern):
   #print pattern,"(after)"
   return pattern
 
+def isPathExistent(folder):
+  if not os.path.isdir(folder):
+    return False
+  else:
+    return True
+
 def pathChecker(path):
-  # controllo path / nome file
+  # Check for '\' character in folder path 
   path = path.replace("\\","")
   if path[len(path)-1]==' ':
       path = path[:-1]
@@ -51,19 +56,16 @@ def pathChecker(path):
 def fixMetadata(folder,pattern):  
   folder = pathChecker(folder)
   # pattern = patternChecker(pattern) # to implement, for people not to use to times same group (e.g HH)
-  # debug stuff
+
   print "Working in dir:",folder
   print "Pattern is:",pattern
-  print "listing dir content"
 
   try:
     for filename in os.listdir(folder):
       filename = filename.replace(".jpg","")
-      #print filename,"(here you are)"
       pattern = buildRegex(pattern)
       prog = re.compile(pattern)
       m = prog.search(filename)
-      #print m
       if m:
         print(m.group("year"))
 
@@ -85,14 +87,21 @@ def fixMetadata(folder,pattern):
 
 
 def main():
-  try:
-    folder=sys.argv[1]
-    pattern=sys.argv[2]
-    fixMetadata(folder,pattern)
-  except:
+  if len(sys.argv) < 3:
     print "Error: Not enough arguments!"
     print "Usage: gphotofix <folder path> <pattern>"
     print "Example: gphotofix /Users/francesco/Downloads/some\ pictures YYYY_MM_DD hh-mm-ss,xx"
+  else:
+    folder=sys.argv[1]
+    if isPathExistent(folder):
+      print "Error: Path doesn't exist!"
+      sys.exit()
+    else:
+      try:
+        pattern=sys.argv[2]
+        fixMetadata(folder,pattern)
+      except:
+        print "Error! Something wrong happened, sorry."
 
 
 if __name__ == "__main__":
