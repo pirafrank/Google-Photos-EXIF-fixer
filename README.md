@@ -15,8 +15,7 @@ gphotofix is a simple solution. It uses the filename to set shooting date in EXI
 - Python 2.7.x *
 - exiftool (You can download it [here](http://www.sno.phy.queensu.ca/~phil/exiftool/))
 
-It works on OS X or Linux (tested on Ubuntu 13.10 and OS X 10.10.x.).
-<br>Not tested on Windows. 
+It works on OS X or Linux (tested on Ubuntu 13.10 and OS X 10.10.x.). Not tested on Windows. 
 
 *Although it may work, it hasn't been tested with Python 2.6.x. Python 3 is not supported yet.
 
