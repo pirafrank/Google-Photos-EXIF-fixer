@@ -130,7 +130,7 @@ Usage: gphotofix <folder path> <pattern>
 
 <pattern> of the date contained in the filename. It doesn't have to match the whole filename!
 At the moment, all date details are needed (from second to year).
-Example: gphotofix /Users/francesco/Downloads/summer\ pictures \"YYYY_MM_DD hh.mm.ss\""
+Example: gphotofix /Users/francesco/Downloads/summer\ pictures \"YYYY_MM_DD hh.mm.ss\"
 
     """
   else:
